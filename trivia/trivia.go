@@ -263,7 +263,6 @@ Accuracy: %s
 
 func getEndPoint() string {
 	url := os.Getenv("TREBOT_API_ENDPOINT")
-	fmt.Printf("Received %s", url)
 	if url != "" {
 		return url
 	}
