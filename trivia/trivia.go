@@ -261,10 +261,19 @@ Accuracy: %s
 	return prettyScoreModel, nil
 }
 
+func getEndPoint() string {
+	url := os.Getenv("TREBOT_API_ENDPOINT")
+	fmt.Printf("Received %s", url)
+	if url != "" {
+		return url
+	}
+	return "http://jservice.io/api/random"
+}
+
 func getTriviaClue() (triviaModel, error) {
-	jservice := "http://jservice.io/api/random"
+	url := getEndPoint()
 	client := &http.Client{}
-	req, _ := http.NewRequest("GET", jservice, nil)
+	req, _ := http.NewRequest("GET", url, nil)
 	r, _ := client.Do(req)
 	body, _ := ioutil.ReadAll(r.Body)
 	q := []triviaModel{}
