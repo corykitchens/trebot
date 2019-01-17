@@ -115,7 +115,7 @@ func renderScores() (string, error) {
 
 func showAbout() (string, error) {
 	return `
-*About Trebot*
+*About BezoBot*
 
 Commands:
 
@@ -127,7 +127,9 @@ Commands:
 
 > *!trivia about* (shows information related to this trivia bot)
 > *!trivia rules* (shows information about how answers are matched, and about scoring rules)
-
+*** New Featue ***
+> *!trivia insert <trivia question string> (insert a new Trivia question)
+> *Example :q My Question Text :a this is the answer :c CurrentEvents
 General Info:
 
 > This plugin for go-chat-bot (https://github.com/go-chat-bot/bot) leverages jService (http://jservice.io) to provide every Jeopardy question ever.  Thanks to the person who made that! 
@@ -157,6 +159,11 @@ Scoring:
 `, nil
 }
 
+func insertQuestion(b *bot.Cmd) (string, error) {
+	q := TriviaParser(b.Message)
+	return fmt.Sprintf("Received Message -> %s", b.Message), nil
+}
+
 func answer(c *bot.PassiveCmd) (string, error) {
 	if c.User.IsBot {
 		return fmt.Sprintf("Sorry %s, bots are not allowed to play.", c.User.Nick), nil
@@ -180,6 +187,9 @@ func trivia(command *bot.Cmd) (string, error) {
 		str, err = showRules()
 	case "stats":
 		str, err = showStats(command)
+		str = "```" + str + "```"
+	case "insert":
+		str, err = insertQuestion(command)
 		str = "```" + str + "```"
 	case "answer":
 		if command.User.IsBot {
