@@ -162,7 +162,8 @@ Scoring:
 
 func insertQuestion(b *bot.Cmd) (string, error) {
 	q := tp.TriviaParser(b.Message)
-	return fmt.Sprintf("Received -> %v", q), nil
+	tp.SubmitQuestion(q)
+	return fmt.Sprintf("Post message -> %v", q), nil
 }
 
 func answer(c *bot.PassiveCmd) (string, error) {
