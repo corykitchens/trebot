@@ -14,6 +14,7 @@ import (
 	"sync"
 	"time"
 
+	"github.com/corykitchens/tp"
 	"github.com/go-chat-bot/bot"
 	"github.com/olekukonko/tablewriter"
 )
@@ -160,8 +161,8 @@ Scoring:
 }
 
 func insertQuestion(b *bot.Cmd) (string, error) {
-	q := TriviaParser(b.Message)
-	return fmt.Sprintf("Received Message -> %s", b.Message), nil
+	q := tp.TriviaParser(b.Message)
+	return fmt.Sprintf("Received -> %v", q), nil
 }
 
 func answer(c *bot.PassiveCmd) (string, error) {
