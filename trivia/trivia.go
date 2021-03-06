@@ -116,7 +116,7 @@ func renderScores() (string, error) {
 
 func showAbout() (string, error) {
 	return `
-*About BezoBot*
+*About Trebot*
 
 Commands:
 

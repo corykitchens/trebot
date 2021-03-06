@@ -14,5 +14,13 @@
         "correct_answers": 0,
         "wrong_answers": 0,
         "new_question_requests": 1
+    },
+    {
+        "id": "",
+        "name": "",
+        "score": -80,
+        "correct_answers": 0,
+        "wrong_answers": 1,
+        "new_question_requests": 2
     }
 ]
